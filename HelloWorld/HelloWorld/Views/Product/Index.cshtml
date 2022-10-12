@@ -1,0 +1,39 @@
+﻿@* yorum satırı *@
+
+<p>
+    @DateTime.Now <span>Şimdiki zaman paylaşıldı.</span>
+</p>
+
+@{ 
+    string name = "Abdullah";
+    string surname = "Ayhan";
+    int age = 22;
+
+    string fullname = $"{name} {surname}";
+}
+
+<p>
+    fullname: @fullname
+</p>
+
+
+<p>
+    @{ 
+        if (name=="Abdullah")
+        {
+        <ul>
+            <li>@name</li>
+            <li>@surname</li>
+            <li>@age</li>
+        </ul>
+        }
+        else
+        {
+            <span>Eşleşme Sağlanamadı.</span>
+        }
+    }
+</p>
+
+
+
+@(name +" "+ surname) @* değişken tanımlaması yapılmaz ama boşluk bırakabilirsin. *@
