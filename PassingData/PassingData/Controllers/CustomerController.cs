@@ -24,5 +24,14 @@ namespace PassingData.Controllers
             CustomerAndProductVM vm = new CustomerAndProductVM() {customers=customers , product= product, date=date };
             return View(vm);
         }
+
+
+        public IActionResult UseTuple()
+        {
+            Product product = new Product() { ProductName = "Telefon", CategoryName = "Elektronik", UnitPrice = 5 };
+            string date = DateTime.Now.ToString();
+            (List<Customer>,Product,string) sentUsingTuple=(customers, product, date);
+            return View(sentUsingTuple);
+        }
     }
 }

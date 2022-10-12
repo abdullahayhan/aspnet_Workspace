@@ -1,0 +1,17 @@
+﻿@using PassingData.Models
+@model (List<Customer>,Product product,string) 
+
+<p>
+    Ürün : @Model.product.ProductName
+</p>
+
+<ul>
+    @foreach (Customer item in Model.Item1)
+    {
+        <li>@item.FirstName</li>
+    }
+</ul>
+
+<p>
+    tarih : @Model.Item3
+</p>
