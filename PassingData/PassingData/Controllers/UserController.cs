@@ -33,5 +33,19 @@ namespace PassingData.Controllers
             ViewData["Users"] = users;
             return View();
         }
+
+        public IActionResult UseTempData()
+        {
+            TempData["name"] = "abdullah";
+            return RedirectToAction("UseTempDataTest"); // başka bir action viewı çağırma
+        }
+
+        public IActionResult UseTempDataTest()
+        {
+            TempData.Keep("name"); // sayfayı yenilediğinde bir daha kullanabilmek için.
+            // tempdata olayı başka bir viewde kullanılabilir. Yalnızca tek bir kez kullanım hakkı var ve
+            // kullanımı için nerede tanımlıysa ilk o action çalışmalıdır. yukarıdaki actionda tanımlayıp burada kullandık.
+            return View();
+        }
     }
 }
