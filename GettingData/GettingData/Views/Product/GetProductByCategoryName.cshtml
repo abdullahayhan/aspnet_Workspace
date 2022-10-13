@@ -1,0 +1,17 @@
+﻿@using GettingData.Models
+@model List<Product>
+
+@if (ViewBag.Error!=null)
+	{
+		 <h2>@ViewBag.Error</h2>
+	}
+else
+	{
+	         <h2>Kategoriye Göre Ürünler</h2>
+			 <ul>
+				 @foreach (Product item in Model)
+                 {
+					 <li>@item.ProductName</li>
+                 }
+			 </ul>
+	}

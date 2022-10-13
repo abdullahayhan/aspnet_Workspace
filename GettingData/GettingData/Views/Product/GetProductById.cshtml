@@ -1,5 +1,12 @@
 ﻿@using GettingData.Models
 @model Product
 
-<h2>Girilen Ürün</h2>
-<h4>@Model.ProductName</h4>
+@if (ViewBag.Error != null)
+{
+    <h2>@ViewBag.Error</h2>
+}
+else
+{
+    <h2>Girilen Ürün</h2>
+    <h4>@Model.ProductName</h4>
+}
