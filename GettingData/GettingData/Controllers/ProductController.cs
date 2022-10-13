@@ -35,7 +35,7 @@ namespace GettingData.Controllers
         public IActionResult GetProductByCategoryName(string categoryName)
         {
             List<Product> myProducts = products.FindAll(x=>x.CategoryName==categoryName);
-            if (myProducts == null)
+            if (myProducts.Count == 0)
             {
                 ViewBag.Error = "Girilen Kategori İle İlgili Bir Ürün Bulunamadı";
             }

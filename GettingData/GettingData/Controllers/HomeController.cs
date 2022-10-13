@@ -13,5 +13,11 @@ namespace GettingData.Controllers
         {
             return "Uygulama Çalışıyor";
         }
+
+        // home/index?name=abdullah&surname=ayhan
+        public string UseQueryString(string name, string surname)
+        {
+            return $"Merhaba {name} {surname}";
+        }
     }
 }

@@ -30,9 +30,9 @@ namespace GettingData
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapDefaultControllerRoute();
+                endpoints.MapDefaultControllerRoute();
 
-                endpoints.MapControllerRoute("CustomRoute", "{controller=Home}/{action=Index}/{categoryName?}");
+                //endpoints.MapControllerRoute("CustomRoute", "{controller=Home}/{action=Index}/{categoryName?}");
             });
         }
     }
