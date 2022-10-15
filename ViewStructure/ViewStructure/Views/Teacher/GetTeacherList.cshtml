@@ -9,7 +9,7 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
           crossorigin="anonymous">
     <h3 style="text-align:center">Öğretmen Listesi</h3>
-
+@await Component.InvokeAsync("WorkChart",new {id=1}) @*Bu şekilde parametre gönderebilirsin, Invokeda karşılaman lazım*@
     <div class="row row-cols-md-3">
         @foreach (Teacher item in Model)
         {
