@@ -12,20 +12,14 @@
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a asp-action="index" asp-controller="home">Home</a></li>
-                <li><a asp-action="page1" asp-controller="home">Öğretmenler</a></li>
-                <li><a asp-action="page2" asp-controller="home">Öğrenciler</a></li>
-            </ul>
+            <partial name="~/Views/Shared/Partials/_HeaderPartial.cshtml"/>
             @RenderSection("account",false)
         </div>
     </nav>
 
     <div class="container">
         @RenderBody()
+        <partial name="~/Views/Shared/Partials/_SliderPartial.cshtml"/>
     </div>
 
 </body>
