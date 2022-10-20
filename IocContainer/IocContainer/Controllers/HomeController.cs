@@ -16,9 +16,9 @@ namespace IocContainer.Controllers
         {
             _log = log;
         }
-        public string Index()
+        public string Index([FromServices] ILog log)
         {
-            _log.Info("index action içine bir istek gelmiştir");
+            log.Info("action bazlı bir talep gelmiştir");
             return "Service Running";
         }
     }
