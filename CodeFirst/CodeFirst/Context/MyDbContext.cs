@@ -23,7 +23,8 @@ namespace CodeFirst.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // nvarchar falan filan ayarlama
+            modelBuilder.Entity<OrderDetail>().Ignore("ID");
+            modelBuilder.Entity<OrderDetail>().HasKey("ProductID", "OrderID");
         }
 
         public DbSet<AppUser> Users { get; set; }
