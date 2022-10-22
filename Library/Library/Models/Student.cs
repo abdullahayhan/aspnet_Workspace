@@ -10,12 +10,10 @@ namespace Library.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int SchoolNumber { get; set; }
         public Gender Gender { get; set; }
-        public DateTime BirthDay { get; set; }
-        public string PhoneNumber { get; set; }
 
         // Relation Prop
         public List<Operation> Operations { get; set; }
+        public virtual StudentDetail StudentDetail { get; set; }
     }
 }

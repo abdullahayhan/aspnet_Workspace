@@ -1,4 +1,5 @@
-﻿using Library.Models;
+﻿using Library.Configurations;
+using Library.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,19 @@ namespace Library.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Operation>().Ignore("ID");
-            modelBuilder.Entity<Operation>().HasKey("StudentID", "BookID");
+            // Operation
+            modelBuilder.ApplyConfiguration(new OperationConfiguration());
+
+            // Author
+            modelBuilder.ApplyConfiguration(new AuthorsConfiguration());
+
+
+            // Student
+            modelBuilder.ApplyConfiguration(new StudentConfiguration());
+
+            // Book
+            modelBuilder.ApplyConfiguration(new BookConfiguration());
+
         }
         public DbSet<Book> Books { get; set; }
         public DbSet<Student> Students { get; set; }
