@@ -19,8 +19,8 @@
                 <th>@(i+1)</th>
                 <td>@Model[i].FirstName @Model[i].LastName</td>
                 <td>
-                    <a class="big-icon" asp-controller="Author" asp-action="Edit"><i class="bi bi-pencil-square"></i></a>
-                    <a class="big-icon margin-icon" asp-controller="Author" asp-action="Delete"><i class="bi bi-x-circle-fill"></i></a>
+                    <a class="big-icon" asp-controller="Author" asp-action="Edit" asp-route-id="@Model[i].ID"><i class="bi bi-pencil-square"></i></a>
+                    <a class="big-icon margin-icon" asp-controller="Author" asp-action="Delete" asp-route-id="@Model[i].ID"><i class="bi bi-x-circle-fill"></i></a>
                 </td>
             </tr>
         }
