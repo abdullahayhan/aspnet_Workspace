@@ -22,7 +22,6 @@ namespace Library.Context
             // Author
             modelBuilder.ApplyConfiguration(new AuthorsConfiguration());
 
-
             // Student
             modelBuilder.ApplyConfiguration(new StudentConfiguration());
 
