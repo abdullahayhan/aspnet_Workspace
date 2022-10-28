@@ -11,8 +11,8 @@ namespace Library.Controllers
 {
     public class BookTypeController : Controller
     {
-        IRepository<BookType> repoBookType;
-        public BookTypeController(IRepository<BookType> repoBookType)
+        IBookTypeRepository repoBookType;
+        public BookTypeController(IBookTypeRepository repoBookType)
         {
             this.repoBookType = repoBookType;
         }

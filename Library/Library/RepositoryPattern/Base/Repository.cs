@@ -13,7 +13,7 @@ namespace Library.RepositoryPattern.Base
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         MyDbContext db;
-        DbSet<T> table;
+        protected DbSet<T> table; // benden miras alanlarda bunu kullanabilir demek.
         public Repository(MyDbContext db)
         {
             this.db = db;

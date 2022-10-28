@@ -11,12 +11,10 @@ namespace Library.Controllers
 {
     public class AuthorController : Controller
     {
-        MyDbContext db;
-        IRepository<Authors> repoAuthor;
-        public AuthorController(MyDbContext db, IRepository<Authors> repoAuthor)
+        IAuthorRepository repoAuthor;
+        public AuthorController(IAuthorRepository repoAuthor)
         {
             this.repoAuthor = repoAuthor;
-            this.db = db;
         }
         public IActionResult AuthorList()
         {
