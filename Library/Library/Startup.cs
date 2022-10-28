@@ -36,8 +36,9 @@ namespace Library
             services.AddScoped<IBookTypeRepository, BookTypeRepository>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MyDbContext context)
         {
+            context.Database.Migrate(); // son migration üzerinden databaseyi yeniler projeyi birine yollarken kullan.
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
