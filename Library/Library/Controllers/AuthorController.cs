@@ -1,5 +1,6 @@
 ﻿using Library.Context;
 using Library.Models;
+using Library.RepositoryPattern.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,16 @@ namespace Library.Controllers
     public class AuthorController : Controller
     {
         MyDbContext db;
-        public AuthorController(MyDbContext db)
+        IRepository<Authors> repoAuthor;
+        public AuthorController(MyDbContext db, IRepository<Authors> repoAuthor)
         {
+            this.repoAuthor = repoAuthor;
             this.db = db;
         }
         public IActionResult AuthorList()
         {
             // List<Authors> authors = db.Authors.ToList();
-            List<Authors> authors = db.Authors.Where(a=>a.Status!=Enums.DataStatus.Deleted).ToList();
+            List<Authors> authors = repoAuthor.GetActives();
             return View(authors);
         }
 
@@ -30,34 +33,26 @@ namespace Library.Controllers
         [HttpPost]
         public IActionResult Create(Authors author)
         {
-            db.Authors.Add(author);
-            db.SaveChanges();
+            repoAuthor.Add(author);
             return RedirectToAction("AuthorList");
         }
 
         public IActionResult Edit(int id)
         {
-            Authors author = db.Authors.Find(id);
+            Authors author = repoAuthor.GetById(id);
             return View(author);
         }
         [HttpPost]
         public IActionResult Edit(Authors author)
         {
-            author.Status = Enums.DataStatus.Updated;
-            author.ModifiedDate = DateTime.Now;
-            db.Authors.Update(author);
-            db.SaveChanges();
+            repoAuthor.Update(author);
             return RedirectToAction("AuthorList");
         }
 
         // soft delete sadece uygulamada göstermez ama veritabanında bilgi hala vardır.
         public IActionResult Delete(int id)
         {
-            Authors author =db.Authors.Find(id);
-            author.Status = Enums.DataStatus.Deleted;
-            author.ModifiedDate = DateTime.Now;
-            db.Authors.Update(author);
-            db.SaveChanges();
+            repoAuthor.Delete(id);
             return RedirectToAction("AuthorList");
         }
     }

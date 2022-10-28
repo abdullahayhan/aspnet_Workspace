@@ -1,4 +1,7 @@
 using Library.Context;
+using Library.Models;
+using Library.RepositoryPattern.Base;
+using Library.RepositoryPattern.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +28,8 @@ namespace Library
             services.AddDbContext<MyDbContext>(options=>options.UseSqlServer(_configuration
                 ["ConnectionStrings:Mssql"]));
             services.AddControllersWithViews();
+            services.AddScoped<IRepository<BookType>, Repository<BookType>>();
+            services.AddScoped<IRepository<Authors>, Repository<Authors>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
