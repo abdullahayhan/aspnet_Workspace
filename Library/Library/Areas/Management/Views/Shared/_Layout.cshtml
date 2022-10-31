@@ -27,6 +27,12 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Author" asp-action="AuthorList">Author</a>
                     </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Auth" asp-action="LogOut" asp-area="">LogOut</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

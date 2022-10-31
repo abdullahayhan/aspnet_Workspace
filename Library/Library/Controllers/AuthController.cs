@@ -1,9 +1,12 @@
 ﻿using Library.Models;
 using Library.RepositoryPattern.Interfaces;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Library.Controllers
@@ -26,7 +29,7 @@ namespace Library.Controllers
         // kullanıcının rolune göre sayfa yönlendirmesini yap.
 
         [HttpPost]
-        public IActionResult Login(AppUser user)
+        public async Task<IActionResult> Login(AppUser user)
         {
             if (repoUser.Any(x=>x.UserName==user.UserName && x.Status!=Enums.DataStatus.Deleted))
             {
@@ -36,6 +39,15 @@ namespace Library.Controllers
                 // 2. parametre kriptolu veri , 1. parametre ise bizdeki password ikisi eşitleniyorsa true dönücek
                 if (isValid)
                 {
+                    List<Claim> claims = new List<Claim>() {
+
+                        new Claim("userName",selectedUser.UserName),
+                        new Claim("userId",selectedUser.ID.ToString()),
+                        new Claim("role",selectedUser.Role.ToString())
+                    };
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                    await HttpContext.SignInAsync(principal);
                     if (selectedUser.Role==Enums.Role.admin)
                     {
                         return RedirectToAction("Index","Home",new { area="Management"});
@@ -47,6 +59,12 @@ namespace Library.Controllers
                 }
             }
             return View();
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login");
         }
     }
 }

@@ -3,6 +3,7 @@ using Library.Models;
 using Library.RepositoryPattern.Base;
 using Library.RepositoryPattern.Concrete;
 using Library.RepositoryPattern.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,12 @@ namespace Library
             services.AddScoped<IRepository<AppUser>, Repository<AppUser>>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookTypeRepository, BookTypeRepository>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+                options => { options.LoginPath = "/Auth/Login";
+                    options.Cookie.Name = "UserDetail";   }
+                ); // çerezleri kullanarak bu giriþ kontrolüne ata,
+            // AddAuthentication içine direkt parametre olarak Cookie olarak yazsan da olurdu.
+            // addCookie içine yazýlan parametre ise eðer böyle bir yetkilendirme yoksa login sayfasýna gönder.
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MyDbContext context)
@@ -46,6 +53,8 @@ namespace Library
             }
             app.UseStaticFiles(); // wwwroot dosyasýný kullanabilmek için. statik dosyalara eriþim saðlamak için.
             app.UseRouting();
+            app.UseAuthentication(); // giriþ için 
+            app.UseAuthorization(); // giriþ kontrölü için 
 
             app.UseEndpoints(endpoints =>
             {

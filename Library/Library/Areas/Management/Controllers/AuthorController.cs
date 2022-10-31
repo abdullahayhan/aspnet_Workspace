@@ -1,5 +1,6 @@
 ﻿using Library.Models;
 using Library.RepositoryPattern.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace Library.Areas.Management.Controllers
 {
     [Area("Management")] // başka bir area'da aynı isimli controller açabilirsin karışıklık olmasın diye.
+    [Authorize]
     public class AuthorController : Controller
     {
         IAuthorRepository repoAuthor;
@@ -16,6 +18,7 @@ namespace Library.Areas.Management.Controllers
         {
             this.repoAuthor = repoAuthor;
         }
+        
         public IActionResult AuthorList()
         {
             // List<Authors> authors = db.Authors.ToList();
