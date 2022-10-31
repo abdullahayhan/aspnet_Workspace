@@ -32,6 +32,7 @@ namespace Library
             //services.AddScoped<IRepository<BookType>, Repository<BookType>>();
             //services.AddScoped<IRepository<Authors>, Repository<Authors>>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IRepository<AppUser>, Repository<AppUser>>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookTypeRepository, BookTypeRepository>();
         }
@@ -43,12 +44,20 @@ namespace Library
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles(); // wwwroot dosyasýný kullanabilmek için. statik dosyalara eriþim saðlamak için.
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
+                   name: "DefaultArea",
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                   );
+                endpoints.MapControllerRoute(
+                    name:"Default",
+                    pattern:"{controller=Auth}/{Action=Login}/{id?}"
+                    );
+               
             });
         }
     }
