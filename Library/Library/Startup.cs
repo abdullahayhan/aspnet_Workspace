@@ -38,10 +38,19 @@ namespace Library
             services.AddScoped<IBookTypeRepository, BookTypeRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
                 options => { options.LoginPath = "/Auth/Login";
-                    options.Cookie.Name = "UserDetail";   }
-                ); // çerezleri kullanarak bu giriþ kontrolüne ata,
+                    options.Cookie.Name = "UserDetail";
+                    options.AccessDeniedPath = "/Auth/Login";
+                }); 
+            // çerezleri kullanarak bu giriþ kontrolüne ata,
             // AddAuthentication içine direkt parametre olarak Cookie olarak yazsan da olurdu.
             // addCookie içine yazýlan parametre ise eðer böyle bir yetkilendirme yoksa login sayfasýna gönder.
+
+
+            services.AddAuthorization(options => 
+            {
+                options.AddPolicy("AdminPolicy",policy=>policy.RequireClaim("role","admin"));
+                options.AddPolicy("UserPolicy",policy=>policy.RequireClaim("role","admin","user"));
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MyDbContext context)

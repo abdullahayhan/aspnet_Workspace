@@ -1,6 +1,7 @@
 ﻿using Library.Context;
 using Library.Models;
 using Library.RepositoryPattern.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Library.Areas.Management.Controllers
 {
     [Area("Management")]
+    [Authorize(Policy = "AdminPolicy")]
     public class BookTypeController : Controller
     {
         IBookTypeRepository repoBookType;

@@ -2,6 +2,7 @@
 using Library.Dto;
 using Library.Models;
 using Library.RepositoryPattern.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace Library.Areas.Management.Controllers
 {
     [Area("Management")]
+    [Authorize(Policy = "AdminPolicy")]
     public class BookController : Controller
     {
         MyDbContext db;

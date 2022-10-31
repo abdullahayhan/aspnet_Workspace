@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Library.Areas.Management.Controllers
 {
     [Area("Management")] // başka bir area'da aynı isimli controller açabilirsin karışıklık olmasın diye.
-    [Authorize]
+    [Authorize(Policy ="AdminPolicy")]
     public class AuthorController : Controller
     {
         IAuthorRepository repoAuthor;
