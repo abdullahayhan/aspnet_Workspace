@@ -5,6 +5,7 @@
     <div class="mb-3">
         <label class="form-label" asp-for="Name">İsim</label>
         <input type="text" class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Kaydet</button>
 </form>

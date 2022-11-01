@@ -29,9 +29,10 @@
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Auth" asp-action="LogOut" asp-area="">LogOut</a>
-                        </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="return confirmDel();" asp-controller="Auth" asp-action="LogOut" asp-area="">LogOut</a>
+                    <script language="javascript">function confirmDel() { var agree=confirm("Çıkış Yapmak İstediğinizden Emin Misiniz ?"); if (agree) { return true ; } else { return false ;} }</script>
+                </li>
                     }
                 </ul>
             </div>

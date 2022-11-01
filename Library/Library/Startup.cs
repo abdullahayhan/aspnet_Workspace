@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Library.Context;
 using Library.Models;
 using Library.RepositoryPattern.Base;
@@ -29,7 +30,7 @@ namespace Library
         {
             services.AddDbContext<MyDbContext>(options=>options.UseSqlServer(_configuration
                 ["ConnectionStrings:Mssql"]));
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             //services.AddScoped<IRepository<BookType>, Repository<BookType>>();
             //services.AddScoped<IRepository<Authors>, Repository<Authors>>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();

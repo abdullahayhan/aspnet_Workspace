@@ -34,6 +34,10 @@ namespace Library.Areas.Management.Controllers
         [HttpPost]
         public IActionResult Create(Authors author)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(author);
+            }
             repoAuthor.Add(author);
             return RedirectToAction("AuthorList", "Author", new { area = "Management" });
         }

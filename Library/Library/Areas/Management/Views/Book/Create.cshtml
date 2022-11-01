@@ -7,10 +7,12 @@
     <div class="mb-3">
         <label class="form-label" asp-for="book.Name">İsim</label>
         <input type="text" asp-for="book.Name" class="form-control" />
+        <span asp-validation-for="book.Name" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="book.PageCount">Sayfa Sayısı</label>
         <input type="text" asp-for="book.PageCount" class="form-control" />
+        <span asp-validation-for="book.PageCount" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label class="form-label" asp-for="book.AuthorID">Yazar</label>

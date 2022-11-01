@@ -17,7 +17,8 @@
             <td>@Model[i].Name</td>
             <td>
                 <a class="big-icon" asp-area="Management" asp-controller="BookType" asp-action="Edit" asp-route-id="@Model[i].ID"><i class="bi bi-pencil-square"></i></a>
-                <a class="big-icon margin-icon" asp-area="Management" asp-controller="BookType" asp-action="HardDelete" asp-route-id="@Model[i].ID"><i class="bi bi-x-circle-fill"></i></a>
+                <a class="big-icon margin-icon" onclick="return confirmDel();" asp-area="Management" asp-controller="BookType" asp-action="HardDelete" asp-route-id="@Model[i].ID"><i class="bi bi-x-circle-fill"></i></a>
+                <script language="javascript">function confirmDel() { var agree=confirm("Bu içeriği silmek istediğinizden emin misiniz?\nBu işlem geri alınamaz!"); if (agree) { return true ; } else { return false ;} }</script>
             </td>
         </tr>
         }
