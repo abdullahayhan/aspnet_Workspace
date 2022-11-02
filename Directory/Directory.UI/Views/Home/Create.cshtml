@@ -1,0 +1,29 @@
+﻿@model Person
+
+<h3 class="text-center">Yeni Kişi Ekleme Sayfası</h3>
+<div asp-validation-summary="All">
+
+</div>
+
+    <form method="post" asp-controller="Home" asp-action="Create">
+        <div class="mb-3">
+            <label class="form-label" asp-for="FirstName">İsim</label>
+            <input type="text" class="form-control" asp-for="FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="LastName">Soyisim</label>
+            <input type="text" class="form-control" asp-for="LastName" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="PhoneNumber">Telefon Nuamarası</label>
+            <input type="text" class="form-control" asp-for="PhoneNumber" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Company">Şirket ismi</label>
+            <input type="text" class="form-control" asp-for="Company" />
+        </div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
